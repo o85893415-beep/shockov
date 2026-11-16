@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Escape from Duckov 3D</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div id="menu-screen">
+    <h1>ESCAPE FROM DUCKOV</h1>
+    <div class="subtitle">Tactical 3D Extraction Shooter • Progress Saved Locally</div>
+
+    <div class="hideout-grid">
+      <div class="card">
+        <h3>Bunker Stash & Stats</h3>
+        <div class="stat-row"><span>Roubles (Cash):</span><strong class="cash-text" id="menu-cash">$5,000</strong></div>
+        <div class="stat-row"><span>Successful Extracts:</span><strong id="menu-extracts">0</strong></div>
+        <div class="stat-row"><span>Duck Eliminations:</span><strong id="menu-kills">0</strong></div>
+        <div class="stash-box">
+          <div class="stash-header">
+            <span>Extracted Stash (<span id="stash-count">0</span>/12)</span>
+            <button id="btn-sell-all" class="btn-small">Sell All Loot</button>
+          </div>
+          <div id="stash-grid" class="item-grid"></div>
+        </div>
+        <button id="btn-reset" class="btn-danger">Reset Save Data</button>
+      </div>
+
+      <div class="card">
+        <h3>Weapon, Scope & Zone</h3>
+        <select id="sel-weapon"></select>
+        <div id="weapon-stats" class="info-box"></div>
+        <select id="sel-map" style="margin-top: 12px;">
+          <option value="ground_zero">Map: Ground Zero (Daylight)</option>
+          <option value="warehouse">Map: Warehouse District (CQB)</option>
+          <option value="night_ops">Map: Bunker Night Raid (Flashlight)</option>
+        </select>
+        <button id="btn-buy-supply" style="margin-top: 14px;">Buy Medkit + Plate ($400)</button>
+      </div>
+
+      <div class="card">
+        <h3>Body Armor & Duck Skin</h3>
+        <select id="sel-armor"></select>
+        <div id="armor-stats" class="info-box"></div>
+        <select id="sel-skin" style="margin-top: 12px;"></select>
+        <div class="info-box" style="margin-top:12px; color:#b0bec5;">
+          <strong>Laptop Tip:</strong> Hold <b>RMB</b> or press <b>Shift</b> to zoom scope. Press <b>Tab</b> in-raid to open Backpack.
+        </div>
+      </div>
+    </div>
+
+    <button class="btn-deploy" id="btn-deploy">DEPLOY INTO RAID</button>
+  </div>
+
+  <div id="backpack-modal">
+    <div class="backpack-window">
+      <div class="bp-header">
+        <h3>TACTICAL BACKPACK (<span id="bp-slots">0</span> / 10 Slots)</h3>
+        <span>Total Value: <strong class="cash-text">$<span id="bp-value">0</span></strong></span>
+        <button id="btn-close-bp" class="btn-small">Close [Tab]</button>
+      </div>
+      <div id="backpack-grid" class="item-grid"></div>
+      <div class="bp-footer">Click an item to Use / Equip, or Right-Click to Drop it.</div>
+    </div>
+  </div>
+
+  <div id="hud">
+    <div id="status-panel">
+      <div class="hud-row">
+        <span>HP: <strong id="hud-hp">100</strong></span>
+        <span>Bag Value: <strong class="cash-text">$<span id="hud-bag">0</span></strong></span>
+      </div>
+      <div class="bar-wrap"><div id="hp-fill"></div></div>
+
+      <div class="hud-row">
+        <span>Armor (Tier <span id="hud-tier">1</span>): <strong id="hud-armor">50</strong></span>
+        <span id="hud-weapon-name" class="accent-text">AK-47</span>
+      </div>
+      <div class="bar-wrap"><div id="armor-fill"></div></div>
+
+      <div class="hud-row">
+        <span>Stamina (Roll)</span>
+        <span>Ammo: <strong id="hud-ammo">30 / 30</strong></span>
+      </div>
+      <div class="bar-wrap"><div id="stamina-fill"></div></div>
+
+      <div class="hud-row" style="margin-top: 6px; font-size: 12px;">
+        <span>Medkits: <strong id="hud-medkits">1</strong></span>
+        <span>Plates: <strong id="hud-plates">1</strong></span>
+      </div>
+    </div>
+
+    <canvas id="radar" width="170" height="170"></canvas>
+    <div id="center-alert"></div>
+    <div id="prompt-text">Press [E] to Loot Container</div>
+    <div id="loot-feed"></div>
+
+    <div id="controls-bar">
+      <strong>WASD</strong> Move | <strong>Mouse</strong> Aim | <strong>LMB</strong> Shoot | <strong>RMB / Shift</strong> Scope Zoom | <strong>E</strong> Loot | <strong>Tab</strong> Backpack | <strong>R</strong> Reload | <strong>1/2</strong> Heal/Repair | <strong>Space</strong> Roll
+    </div>
+  </div>
+
+  <script src="https://cloudflare.com"></script>
+  <script src="https://jsdelivr.net"></script>
+  <script type="module" src="./js/main.js"></script>
+</body>
+</html>
